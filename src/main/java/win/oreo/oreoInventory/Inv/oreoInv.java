@@ -5,10 +5,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import win.oreo.oreoInventory.Main;
 
 import java.util.HashMap;
-
-import static win.oreo.oreoInventory.Main.DebugMsg;
 
 public class oreoInv implements InventoryHolder {
     private Inventory inv;
@@ -27,7 +26,7 @@ public class oreoInv implements InventoryHolder {
         inv = Bukkit.createInventory(this, getSize(), getInvName());
         invData.keySet().forEach(integer -> {
             inv.setItem(integer, invData.get(integer));
-            DebugMsg("index : " + integer + " item : " + invData.get(integer).getType().name());
+            Main.DebugMsg("[init Phase] index : " + integer + " item : " + invData.get(integer).getType().name());
         });
     }
 

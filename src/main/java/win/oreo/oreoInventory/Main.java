@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class Main extends JavaPlugin {
-
     public static Set<oreoInv> oroeInvSet = new HashSet<>();
 
     @Override
