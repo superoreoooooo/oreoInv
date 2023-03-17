@@ -42,9 +42,9 @@ public class testCommand implements CommandExecutor {
         ItemStack is = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta mt = is.getItemMeta();
 
-        List<String> lores = new ArrayList<>();
-        lores.add(0, ChatColor.WHITE + "test");
-        mt.setLore(lores);
+        List<String> lore = new ArrayList<>();
+        lore.add(0, ChatColor.WHITE + "test");
+        mt.setLore(lore);
         mt.setDisplayName(ChatColor.AQUA + "TEST");
         mt.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);
         is.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 255);
