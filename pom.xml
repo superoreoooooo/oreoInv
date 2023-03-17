@@ -41,7 +41,6 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\user\Documents\python\server\plugins\oreoInv-1.0.0.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
