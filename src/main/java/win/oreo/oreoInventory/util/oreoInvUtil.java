@@ -18,14 +18,14 @@ public class oreoInvUtil implements Listener {
 
     public oreoInv create(String invName, int size, HashMap<Integer, ItemStack> map) {
         oreoInv inv = new oreoInv(invName, size, map);
-        Main.oroeInvSet.add(inv);
+        Main.oreoInvSet.add(inv);
         return inv;
     }
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         if (e.getClickedInventory() != null) {
-            for (oreoInv inv : Main.oroeInvSet) {
+            for (oreoInv inv : Main.oreoInvSet) {
                 if (inv.getInventory().equals(e.getClickedInventory()) || inv.getInventory().equals(e.getInventory())) {
                     e.setCancelled(true);
                     ItemStack item = inv.getInvData().get(e.getSlot());
@@ -39,7 +39,7 @@ public class oreoInvUtil implements Listener {
 
     @EventHandler
     public void onDrag(InventoryDragEvent e) {
-        for (oreoInv inv : Main.oroeInvSet) {
+        for (oreoInv inv : Main.oreoInvSet) {
             if (inv.getInventory().equals(e.getInventory())) {
                 if (e.getInventory().getSize() > Collections.min(e.getRawSlots())) {
                     e.setCancelled(true);
@@ -50,6 +50,6 @@ public class oreoInvUtil implements Listener {
 
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
-        Main.oroeInvSet.removeIf(in -> in.getInventory().equals(e.getInventory()));
+        Main.oreoInvSet.removeIf(in -> in.getInventory().equals(e.getInventory()));
     }
 }

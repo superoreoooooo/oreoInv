@@ -1,5 +1,6 @@
 package win.oreo.oreoInventory.test;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import win.oreo.oreoInventory.Inv.oreoInv;
+import win.oreo.oreoInventory.Main;
 import win.oreo.oreoInventory.util.oreoInvUtil;
 
 import java.util.ArrayList;
@@ -27,11 +29,16 @@ public class testCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (sender instanceof Player player) {
-            if (sender.hasPermission("administrators")) {
-                player.sendMessage("Command Executed!");
-                if (args.length > 0) {
-                    openTestInv(player);
+        if (sender.hasPermission("administrators")) {
+            sender.sendMessage("Command Executed!");
+            if (args.length > 0) {
+                switch (args[0]) {
+                    case "open" -> openTestInv((Player) sender);
+                    case "list" -> {
+                        Main.DebugMsg("list");
+                        Main.oreoInvSet.forEach(oreoInv -> Bukkit.getConsoleSender().sendMessage(oreoInv.getInvName()));
+                        Main.DebugMsg("list");
+                    }
                 }
             }
         }
@@ -50,11 +57,13 @@ public class testCommand implements CommandExecutor {
         is.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 255);
         is.setItemMeta(mt);
 
+        ItemStack i2 = new ItemStack(Material.NETHER_STAR);
+
         HashMap<Integer, ItemStack> invData = new HashMap<>();
         invData.put(4, is);
+        invData.put(0, i2);
 
         oreoInv oreoinv = util.create(ChatColor.AQUA + "TEST", 9, invData);
-        oreoinv.init();
 
         player.openInventory(oreoinv.getInventory());
     }
