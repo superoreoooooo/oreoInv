@@ -2,15 +2,19 @@ package win.oreo.oreoInventory.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import win.oreo.oreoInventory.Inv.oreoInv;
 import win.oreo.oreoInventory.Main;
+import win.oreo.oreoInventory.util.Item.EnchObj;
 
 import java.util.*;
 
@@ -51,5 +55,21 @@ public class oreoInvUtil implements Listener {
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         Main.oreoInvSet.removeIf(in -> in.getInventory().equals(e.getInventory()));
+    }
+
+    public ItemStack createItem(Material itemMaterial, String itemName, String[] lore, EnchObj[] enchObjs, ItemFlag... flags) {
+        ItemStack itemStack = new ItemStack(itemMaterial);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setDisplayName(itemName);
+        meta.setLore(Arrays.stream(lore).toList());
+        for (EnchObj obj : enchObjs) {
+            itemStack.addUnsafeEnchantment(obj.getEnchantment(), obj.getLvl());
+        }
+
+        meta.addItemFlags(flags);
+
+        itemStack.setItemMeta(meta);
+
+        return itemStack;
     }
 }
