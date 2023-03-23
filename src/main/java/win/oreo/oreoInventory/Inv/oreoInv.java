@@ -22,12 +22,13 @@ public class oreoInv implements InventoryHolder {
         init();
     }
 
-    public void init() {
+    private void init() {
         inv = Bukkit.createInventory(this, getSize(), getInvName());
         invData.keySet().forEach(integer -> {
             inv.setItem(integer, invData.get(integer));
             Main.DebugMsg("[init Phase] index : " + integer + " item : " + invData.get(integer).getType().name());
         });
+        Main.inventories.add(inv);
     }
 
     public String getInvName() {

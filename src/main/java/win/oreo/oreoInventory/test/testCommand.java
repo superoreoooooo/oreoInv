@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class testCommand implements CommandExecutor {
     private final oreoInvUtil util;
 
@@ -36,7 +37,7 @@ public class testCommand implements CommandExecutor {
                     case "open" -> openTestInv((Player) sender);
                     case "list" -> {
                         Main.DebugMsg("list");
-                        Main.oreoInvSet.forEach(oreoInv -> Bukkit.getConsoleSender().sendMessage(oreoInv.getInvName()));
+                        oreoInvUtil.oreoInvSet.forEach(oreoInv -> Bukkit.getConsoleSender().sendMessage(oreoInv.getInvName()));
                         Main.DebugMsg("list");
                     }
                 }
