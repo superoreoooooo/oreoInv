@@ -1,6 +1,5 @@
 package win.oreo.oreoInventory.test;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -31,14 +30,11 @@ public class testCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender.hasPermission("administrators")) {
-            sender.sendMessage("Command Executed!");
             if (args.length > 0) {
                 switch (args[0]) {
-                    case "open" -> openTestInv((Player) sender);
+                    case "open" -> openTestInv(sender);
                     case "list" -> {
-                        Main.DebugMsg("list");
-                        oreoInvUtil.oreoInvSet.forEach(oreoInv -> Bukkit.getConsoleSender().sendMessage(oreoInv.getInvName()));
-                        Main.DebugMsg("list");
+                        oreoInvUtil.oreoInvSet.forEach(oreoInv -> Main.DebugMsg(oreoInv.getInvName()));
                     }
                 }
             }
@@ -46,7 +42,7 @@ public class testCommand implements CommandExecutor {
         return false;
     }
 
-    public void openTestInv(Player player) {
+    public void openTestInv(CommandSender player) {
         ItemStack is = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta mt = is.getItemMeta();
 
@@ -66,6 +62,8 @@ public class testCommand implements CommandExecutor {
 
         oreoInv oreoinv = util.create(ChatColor.AQUA + "TEST", 9, invData);
 
-        player.openInventory(oreoinv.getInventory());
+        if (player instanceof Player) {
+            ((Player) player).openInventory(oreoinv.getInventory());
+        }
     }
 }

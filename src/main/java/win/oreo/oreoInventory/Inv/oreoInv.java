@@ -28,7 +28,6 @@ public class oreoInv implements InventoryHolder {
             inv.setItem(integer, invData.get(integer));
             Main.DebugMsg("[init Phase] index : " + integer + " item : " + invData.get(integer).getType().name());
         });
-        Main.inventories.add(inv);
     }
 
     public String getInvName() {

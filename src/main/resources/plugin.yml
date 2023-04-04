@@ -1,7 +1,6 @@
 name: oreoInventory
 version: '${project.version}'
 main: win.oreo.oreoInventory.Main
-api-version: 1.19
 authors: [superoreo]
 description: oreo inventory
 website: github.com/superoreoooooo

@@ -13,8 +13,6 @@ import java.util.List;
 
 public final class Main extends JavaPlugin {
 
-    public static List<Inventory> inventories;
-
     @Override
     public void onEnable() {
         getCommand("test").setExecutor(new testCommand());

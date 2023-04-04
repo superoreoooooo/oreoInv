@@ -8,12 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import win.oreo.oreoInventory.Inv.oreoInv;
-import win.oreo.oreoInventory.Main;
 import win.oreo.oreoInventory.util.Item.EnchObj;
 
 import java.util.*;
@@ -21,11 +19,12 @@ import java.util.*;
 public class oreoInvUtil implements Listener {
     public static Set<oreoInv> oreoInvSet = new HashSet<>();
 
-    public oreoInv create(String invName, int size, HashMap<Integer, ItemStack> map) {
+    public static oreoInv create(String invName, int size, HashMap<Integer, ItemStack> map) {
         return create(new oreoInv(invName, size, map));
     }
 
-    public oreoInv create(oreoInv inv) {
+    public static oreoInv create(oreoInv inv) {
+        Bukkit.getConsoleSender().sendMessage("data : " + inv.getInventory() + inv.getInvName() + inv.getInvData() + inv);
         oreoInvSet.add(inv);
         return inv;
     }
